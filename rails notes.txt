@@ -1,0 +1,131 @@
+Intsalling Rails
+----------------
+Windows: Install using RubyInstaller
+
+ExecJs Problem
+--------------
+This is due to sass and coffescript cannot be run
+Just install NodeJs and add its install directory in PATH
+
+Create New Rails App
+--------------------
+rails new [name-of-app]
+
+Running Rails Server
+--------------------
+rails server  -> Usually localhost:3000
+
+Scaffolding
+-----------
+rails generate scaffold [Name-Of-Model] field-name:type field-name2:type ..
+ex. rails generate status name:string content:text
+
+DB Migration
+------------
+Make DB migrations if you want to make changes to the database
+rake db:migrate
+
+Git and Github Steps
+--------------------
+git add .
+git commit -m "[Commit Message]"
+Create Github Repo
+Add Remote using: git remote add ... (Given by github)
+git push -u origin master
+
+Make a copy of Jason's repository on my computer
+git clone git@github.com:jasonseifer/treebook.git
+
+Review the log of changes in the repository
+git log
+
+Install the dependencies of the project using Bundler
+bundle
+
+Create the databases for the application
+rake db:create:all
+
+Update the database definitions to their latest version
+rake db:migrate
+
+Bootstrap
+---------
+Download at put the Bootstrap.js, bootstrap.css, and images to
+the respective folders in rails assets
+
+Instead of deleting the scaffolds.css.scss, you can just empty its
+content for it to feel like empty, since later on it will be still
+generated when you add another scaffold to your project
+
+Display a list of all routes in the rails application
+rake routes
+Note: Just add _path or _path(id) if you want to get a relative path of the route
+ex. statuses_path or statuses_path(id)
+
+Terminal Commands
+-----------------
+Add all changes to git to be committed in the next commit
+git add .
+
+View the current status of the git repository
+git status
+
+Commit the changes to git with a commit message
+git commit -m "My commit message"
+
+Configure the name and email address for git on your computer (only needed once per computer)
+git config --global user.name "My Name"
+git config --global user.email "me@example.com"
+
+Update the previous commit to change the author (used extremely rarely)
+git commit --amend --reset-author
+
+Interactivity
+-------------
+If you don't want to use coffeescript then just change the
+.js.coffee into .js and change the comment style from #... to //...
+
+Git Get Changes
+---------------
+git pull origin master
+
+Sublime Tip: Use Ctrl+P to go to any file
+
+Adding Authentication Using Devise
+----------------------------------
+-put gem 'devise' in your gemfile
+-bundle
+-rails generate devise:install # To install devise and to get more instructions
+-follow the instructions from devise installation
+Note: When adding route, be sure to delete the public/html default file from rails
+	  as this file will be first loaded regardless if you have set a new route to index
+-You can change route by putting this into your routes.rb:
+  root to: 'controller#action'
+  ex. root to: 'statuses#index'
+  # You can view all the actions of a controller by opening the controller's respective file
+
+To Create a model for authentication using devise:
+--------------------------------------------------
+rails generate devise [name-of-model]
+ex. rails generate devise user
+
+To Generate Views
+------------------
+rails generate devise:views
+
+To Avoid Mass Asignment Error (When everybody can just register even for admin)
+-------------------------------------------------------------------------------
+Go to user.rb or the model for your authentication and add your custom
+fields to attr_accessible. (ex. :first_name, :last_name, etc)
+
+Interactive Rails
+------------------
+rails console
+ex. interactions:
+user = Users.first # Gets the first user in the database
+user.destroy # deletes the user from the database
+
+Tip: Models / Classes in plural and capitalize form are used to represent models in database
+
+
+
