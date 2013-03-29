@@ -127,5 +127,45 @@ user.destroy # deletes the user from the database
 
 Tip: Models / Classes in plural and capitalize form are used to represent models in database
 
+DB Migration
+------------
+Note: Migrations are changes you want to make to a database
 
+Generate a migration:
+rails generate migration [migration_name]
 
+- Open generated migration under db/migrate/[migration_name]
+- add your commands for the ORM inside the change method
+Common Commands:
+  add_column [name-of-table / model], [name-of-column], [column-type]
+  add_index [name-of-table / model], [name-of-what-column-to-be-the-index]
+  remove_column [name-of-table / model], [name-of-column]
+Ex.
+  add_column :statuses, :user_id, :integer
+  add_index :statuses, :user_id
+  remove_column :statuses, :name # From previous database schema by scaffolding
+
+- rake db:migrate
+- Remove all statuses while in Rails console:
+  [name-of-the-model].delete_all #=> return count of affected
+  Status.delete_all
+
+Simple Form
+-----------
+- Add gem 'simple_form'
+
+Install dependencies for the app, because we added a new dependency: bundle
+
+Initialize simple_form for our project (using the bootstrap option)
+rails generate simple_form:install --bootstrap # if the application has bootstrap, commend if none
+
+Inside views, use the 'simple_form_for' with one of the Bootstrap form
+classes: '.form-horizontal', '.form-inline', '.form-search' or '.form-vertical'
+ex. simple_form_for(@user, :html => {:class => 'form-horizontal'}) do |form|
+
+Associations
+------------
+Remember: You Can Add Methods to Models
+
+- belongs_to :user # From status.rb
+- has_many :statuses # From user.rb
